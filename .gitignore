@@ -1,0 +1,37 @@
+/.phpunit.cache
+
+/laravel-api/vendor/
+/laravel-api/node_modules/
+/laravel-api/storage/
+/laravel-api/public/build/
+/laravel-api/public/hot/
+/laravel-api/public/storage/
+/laravel-api/.env
+/laravel-api/.env.backup
+/laravel-api/.env.production
+/laravel-api/.phpunit.cache
+/laravel-api/.phpactor.json
+/laravel-api/.phpunit.result.cache
+/laravel-api/Homestead.json
+/laravel-api/Homestead.yaml
+/laravel-api/npm-debug.log
+/laravel-api/yarn-error.log
+/laravel-api/auth.json
+/laravel-api/.fleet
+/laravel-api/.idea
+/laravel-api/.nova
+/laravel-api/.vscode
+/laravel-api/.zed
+
+# Ignore IDE and system files
+*.log
+*.sqlite
+.DS_Store
+Thumbs.db
+
+# Ignore Docker and config files (docker-compose and Dockerfile are kept)
+.dockerignore
+docker-compose.override.yml
+.env.local
+.env.development
+.env.testing
