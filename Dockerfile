@@ -1,25 +1,30 @@
 FROM php:8.2-fpm
 
-WORKDIR /var/www/laravel-api
-
 RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     curl \
+    git \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    git \
-    npm \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
-    && curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+RUN groupadd -g 1000 www-data && \
+    useradd -u 1000 -g www-data -m -s /bin/bash www-data
+
+WORKDIR /var/www/laravel-api
+
+COPY laravel-api/composer.json laravel-api/composer.lock ./
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+RUN composer install --no-dev --optimize-autoloader --prefer-dist
 
-COPY laravel-api/package.json laravel-api/pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY laravel-api/ .
 
 RUN chown -R www-data:www-data /var/www/laravel-api/storage /var/www/laravel-api/bootstrap/cache
+
+USER www-data
 
 EXPOSE 9000
 
