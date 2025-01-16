@@ -22,7 +22,6 @@
 /laravel-api/.nova
 /laravel-api/.vscode
 /laravel-api/.zed
-/laravel-api/pnpm-lock.yaml
 
 # Ignore IDE and system files
 *.log
